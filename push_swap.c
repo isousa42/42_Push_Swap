@@ -1,38 +1,5 @@
 #include "push_swap.h"
 
-void    sa(int *stack_a, t_ps *ps)
-{
-    int temp;
-
-    temp = stack_a[0];
-    stack_a[0] = stack_a[1];
-    stack_a[1] = temp;
-    printf("sa\n");
-}
-
-void    ra(int *stack_a, t_ps *ps)
-{
-    int temp;
-    int i;
-
-    temp = stack_a[0];
-    i = 0;
-    while (i < ps->bottom_a)
-    {
-        stack_a[i] = stack_a[i + 1];
-        i++;
-    }
-    stack_a[i] = temp;
-    printf("ra\n");
-}
-
-void    rra(int *stack_a, t_ps *ps)
-{
-    int temp;
-    int i;
-
-}
-
 int main(int argc, char **argv)
 {
     int     stack_a[argc - 1];
@@ -44,10 +11,14 @@ int main(int argc, char **argv)
     i = 1;
     j = 0;
     ps.bottom_a = argc - 2;
+    ps.top_b = argc - 1;
+    ps.size = argc - 2;
+
     // SET ARRAY TO NULL
     while (j < argc - 1)
     {
         stack_a[j] = 0;
+        stack_b[j] = 0;
         j++;
     }
 
@@ -66,12 +37,40 @@ int main(int argc, char **argv)
         exit(0);
     }
 
+    if (argc == 3)
+    {
+        if (stack_a[0] > stack_a[1])
+            sa(stack_a, &ps);
+    }
 
-    //ra(stack_a, &ps);
+
+    //pa(stack_b, stack_a, &ps);
+    //pb(stack_a, stack_b, &ps);
+
+    //sb(stack_b, &ps);
+    //sa(stack_a, &ps);
+
+    //rb(stack_b, &ps, 1);
+    //ra(stack_a, &ps, 1);
+
+    //rrb(stack_b, &ps, 1);
+    //rra(stack_a, &ps, 1);
+    
+
+
+
+
     j = 0;
     while (j < argc - 1)
     {
-        printf("%d\n", stack_a[j]);
+        if(stack_a[j] == 0)
+            printf("      ");
+        else
+            printf("%-5d", stack_a[j]);
+        if (stack_b[j] == 0)
+            printf(". \n");
+        else
+            printf("%d\n", stack_b[j]);
         j++;
     }
 
