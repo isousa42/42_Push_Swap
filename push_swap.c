@@ -43,6 +43,26 @@ int main(int argc, char **argv)
             sa(stack_a, &ps);
     }
 
+    if (argc == 4)
+    {
+        if (stack_a[0] > stack_a[1] && stack_a[0] < stack_a[2])
+            sa(stack_a, &ps);
+        else if (stack_a[0] > stack_a[1] && stack_a[1] > stack_a[2])
+        {
+            sa(stack_a, &ps);
+            rra(stack_a, &ps, 1);
+        }
+        else if (stack_a[0] > stack_a[1] && stack_a[1] < stack_a[2])
+            ra(stack_a, &ps, 1);
+        else if (stack_a[0] < stack_a[1] && stack_a[1] > stack_a[2] && stack_a[0] < stack_a[2])
+        {
+            sa(stack_a, &ps);
+            ra(stack_a, &ps, 1);
+        }
+        else
+            rra(stack_a, &ps, 1);
+    }
+
 
     //pa(stack_b, stack_a, &ps);
     //pb(stack_a, stack_b, &ps);
