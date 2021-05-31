@@ -3,8 +3,7 @@
 void    sa(int *stack_a, t_ps *ps)
 {
     int temp;
-
-    if (ps->size - ps->bottom_a == 3)
+    if (ps->bottom_a < 0)
         return ;
     temp = stack_a[0];
     stack_a[0] = stack_a[1];

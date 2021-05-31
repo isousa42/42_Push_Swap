@@ -5,7 +5,7 @@ RM	= rm -f
 NAME	= push_swap
 HEADER = push_swap.h
 
-SRCS = push_swap.c utils.c ps_fuctions.c
+SRCS = push_swap.c utils.c ps_fuctions.c organize.c
 
 OBJS = $(SRCS:.c=.o)
 

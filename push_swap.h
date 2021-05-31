@@ -7,6 +7,7 @@ typedef struct s_ps
 	int top_b;
     int bottom_a;
     int size;
+    int big;
 
 }		t_ps;
 
@@ -22,3 +23,6 @@ void    rra(int *stack_a, t_ps *ps, int control);
 void    rrb(int *stack_b, t_ps *ps, int control);
 void    pb(int *stack_a, int *stack_b, t_ps *ps);
 void    pa(int *stack_b, int *stack_a, t_ps *ps);
+
+void    org_3dig(int *stack_a, t_ps *ps);
+void    org_4dig(int *stack_a, int *stack_b, t_ps *ps);
