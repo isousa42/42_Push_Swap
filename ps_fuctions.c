@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    sa(int *stack_a, t_ps *ps)
+void    sa(int *stack_a, t_ps *ps, int control)
 {
     int temp;
     if (ps->bottom_a < 0)
@@ -8,10 +8,11 @@ void    sa(int *stack_a, t_ps *ps)
     temp = stack_a[0];
     stack_a[0] = stack_a[1];
     stack_a[1] = temp;
-    printf("sa\n");
+    if (control == 1)
+        printf("sa\n");
 }
 
-void    sb(int *stack_b, t_ps *ps)
+void    sb(int *stack_b, t_ps *ps, int control)
 {
     int temp;
 
@@ -20,7 +21,8 @@ void    sb(int *stack_b, t_ps *ps)
     temp = stack_b[ps->top_b];
     stack_b[ps->top_b] = stack_b[ps->top_b + 1];
     stack_b[ps->top_b + 1] = temp;
-    printf("sb\n");
+    if (control == 1)
+        printf("sb\n");
 }
 
 void    ra(int *stack_a, t_ps *ps, int control)
@@ -94,9 +96,10 @@ void    rrb(int *stack_b, t_ps *ps, int control)
 
 void    pb(int *stack_a, int *stack_b, t_ps *ps)
 {
+    if (stack_a[0] == 0)
+        return ;
     stack_b[ps->top_b - 1] = stack_a[0];
     ps->top_b--;
-    
     stack_a[0] = 0;
     ra(stack_a, ps, 0);
     ps->bottom_a--;

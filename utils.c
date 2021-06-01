@@ -51,3 +51,77 @@ int check_duplicates(int *array, int size)
     }
     return (0);
 }
+
+int    bubble_sort(int *stack, t_ps *ps)
+{
+    int middle;
+    int mid_pos;
+    int array[ps->bottom_a + 1];
+    int temp;
+    int i;
+    int j;
+
+    i = 0;
+    while (i < ps->bottom_a)
+    {
+        array[i] = stack[i];
+        i++;
+    }
+    i = 0;
+    while(i < ps->bottom_a - 1)
+    {
+        j = 0;
+        while (j < ps->bottom_a - i - 1)
+        {
+            if (array[j] > array[j + 1])
+            {
+                temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+            j++;
+        }
+        i++;
+    }
+    mid_pos = ps->bottom_a / 2;
+    middle = array[mid_pos];
+    return (middle);
+}
+
+int     check_res(int *stack_a, t_ps *ps, int middle)
+{
+    int i;
+
+    i = 0;
+    while (i <= ps->bottom_a)
+    {
+        if (stack_a[i] < middle)
+		{
+			ps->pos = i;
+			return (1);
+		}
+        i++;
+    }
+    return (0);
+
+}
+
+int     check_bigger(int *stack, t_ps *ps)
+{
+    int i = 0;
+    ps->big = -99999;
+    while (i <= ps->size)
+    {
+        if (ps->big < stack[i] && stack[i] != 0)
+            ps->big = stack[i];
+        i++;
+    }
+    i = 0;
+    while (i <= ps->size)
+    {
+        if (ps->big == stack[i])
+            return (i);
+        i++;
+    }
+    return (0);
+}
