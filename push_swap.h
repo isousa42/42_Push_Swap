@@ -33,3 +33,5 @@ int     check_bigger(int *stack, t_ps *ps);
 int     check_res(int *stack_a, t_ps *ps, int middle);
 int    bubble_sort(int *stack, t_ps *ps);
 void    organize_a(int *stack_a, int *stack_b, t_ps *ps);
+
+void    print(int *stack_a, int *stack_b, t_ps *ps);
