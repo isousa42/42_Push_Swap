@@ -56,8 +56,6 @@ void    pb(int *stack_a, int *stack_b, t_ps *ps)
     stack_a[0] = 0;
     ra(stack_a, ps, 0);
     ps->bottom_a--;
-    printf("POS = %d \n", ps->top_b);
-
     printf("pb\n");
 }
 

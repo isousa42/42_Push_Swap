@@ -103,7 +103,6 @@ int     check_res(int *stack_a, t_ps *ps, int middle)
         i++;
     }
     return (0);
-
 }
 
 int     check_bigger(int *stack, t_ps *ps)

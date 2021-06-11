@@ -1,61 +1,81 @@
 #include "push.h"
 
-int     check_small(int *stack, t_ps *ps)
-{
-    int i = 1;
-    int j;
-    int smaller = stack[0];
-    int pos = 0;
 
-    while (i < ps->size)
+// size = argc - 1 (ALWAYS) = Size of the array
+// bottom_a = size - 1 (CHANGABLE) = Pos of the last element in stack A
+// top_b = size (CHANGABLE) = Pos top of Stack B. Starts at size because it is empty
+
+int    bubble_sort(int *stack, t_ps *ps)
+{
+    int middle;
+    int mid_pos;
+    int array[ps->bottom_a + 1];
+    int temp;
+    int i;
+    int j;
+
+    i = 0;
+    while (i < ps->bottom_a)
     {
-        //printf("%d\n", ps->size);
-        if (stack[i] == 0)
+        array[i] = stack[i];
+        i++;
+    }
+    i = 0;
+    while(i < ps->bottom_a - 1)
+    {
+        j = 0;
+        while (j < ps->bottom_a - i - 1)
         {
-            i++;
-            continue;
-        }
-        if (stack[i] < smaller)
-        {
-            smaller = stack[i];
-            pos = i;
+            if (array[j] > array[j + 1])
+            {
+                temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+            j++;
         }
         i++;
     }
-    stack[pos] = 255;
-    //printf("POS = %d\n", pos);
-    //printf("SMALL = %d\n", smaller);
-    return (pos);
+    mid_pos = (ps->bottom_a + 1) / 2;
+    middle = array[mid_pos];
+    return (middle);
 }
 
-int    create_index(t_ps *ps, int *stack_a)
+int     check_res(int *stack_a, t_ps *ps, int middle)
 {
-    int index[ps->size];
-    int copy[ps->size];
+    int i;
+
+    i = 0;
+    while (i <= ps->bottom_a)
+    {
+        if (stack_a[i] < middle)
+		{
+			ps->pos = i;
+			return (1);
+		}
+        i++;
+    }
+    return (0);
+}
+
+int     check_bigger(int *stack, t_ps *ps)
+{
     int i = 0;
-
+    int big = -2147483647;
     while (i < ps->size)
     {
-        copy[i] = stack_a[i];
+        if (big < stack[i])
+            big = stack[i];
         i++;
     }
     i = 0;
     while (i < ps->size)
     {
-        index[i] = check_small(copy, ps);
-        i++;
-    } 
-
-    i = 0;
-    while (i < ps->size)
-    {
-        printf("%d\n", index[i]);
+        if (big == stack[i])
+            return (i);
         i++;
     }
-
-
-    return (check_small(stack_a, ps));
-
+    return (0);
 }
 
 int main(int argc, char **argv)
@@ -65,14 +85,53 @@ int main(int argc, char **argv)
     int stack_a[ps.size];
     int stack_b[ps.size];
 
+    int middle;
+
     init(&ps, stack_a, stack_b, argv);
-    //print(stack_a, stack_b, ps.size);
+    print(stack_a, stack_b, ps.size);
 
     if (argc == 4)
         org_3dig(stack_a, &ps);
-    //print(stack_a, stack_b, ps.size);
+    if (argc > 5)
+    {
+        while (ps.bottom_a > 2)
+        {
+            middle = bubble_sort(stack_a, &ps);
+            while (stack_a[0] < middle)
+		        pb(stack_a, stack_b, &ps);
+            while (check_res(stack_a, &ps, middle))
+            {
+                while (stack_a[0] < middle)
+		            pb(stack_a, stack_b, &ps);
+                if (ps.pos > (ps.bottom_a + 1) / 2)
+                    rra(stack_a, &ps, 1);
+                else
+                    ra(stack_a, &ps, 1);
+                while (stack_a[0] < middle)
+		            pb(stack_a, stack_b, &ps);
+            }
+        }
+        org_3dig(stack_a, &ps);
+        while (ps.top_b < ps.size)
+        {
+            if (stack_b[ps.top_b + 1] == stack_b[check_bigger(stack_b, &ps)] && (ps.size - ps.top_b) > 3)
+                sb(stack_b, &ps, 1);
+            int size = ps.size - ps.top_b;
+            size = size / 2;
+            int dist = (check_bigger(stack_b, &ps) - (ps.top_b - 1));
+            while (stack_b[ps.top_b] != stack_b[check_bigger(stack_b, &ps)])
+            {
+                if (dist > size)
+                    rrb(stack_b, &ps, 1);
+                else
+                    rb(stack_b, &ps, 1);
+            }
+            pa(stack_b, stack_a, &ps);
+        }
+    }
+    print(stack_a, stack_b, ps.size);
 
-    create_index(&ps, stack_a);
+
     
     return (0);
 }
@@ -80,8 +139,3 @@ int main(int argc, char **argv)
 
 
 
-//   5   0  4
-//   3   1  2
-//   2   2  1
-//   1   3  0
-//   4   4  3

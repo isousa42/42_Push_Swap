@@ -7,6 +7,7 @@ void    init(t_ps *ps, int *stack_a, int *stack_b, char **argv)
     int sort[ps->size];
     ps->bottom_a = ps->size - 1;
     ps->top_b = ps->size;
+	ps->pos = 0;
 
     if (check_dup(argv) == -1)
     {

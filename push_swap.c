@@ -8,10 +8,8 @@ void    organize_a(int *stack_a, int *stack_b, t_ps *ps)
 	middle = bubble_sort(stack_a, ps);
 	while (stack_a[0] < middle)
 		pb(stack_a, stack_b, ps);
-	//printf("AQUI");
 	while (check_res(stack_a, ps, middle) && ps->bottom_a >= 2)
 	{
-		//printf("MID = %d\n", middle);
 		if (ps->pos < ps->bottom_a / 2)
 			ra(stack_a, ps, 1);
 		else

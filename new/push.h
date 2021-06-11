@@ -7,6 +7,7 @@ typedef struct s_ps
 	int top_b;
     int bottom_a;
     int size;
+    int pos;
 
 }		t_ps;
 
