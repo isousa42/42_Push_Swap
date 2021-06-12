@@ -112,7 +112,7 @@ int main(int argc, char **argv)
             }
         }
         org_3dig(stack_a, &ps);
-        while (ps.top_b < ps.size)
+        while (ps.top_b < ps.size - 1)
         {
             if (stack_b[ps.top_b + 1] == stack_b[check_bigger(stack_b, &ps)] && (ps.size - ps.top_b) > 3)
                 sb(stack_b, &ps, 1);
@@ -127,6 +127,7 @@ int main(int argc, char **argv)
                     rb(stack_b, &ps, 1);
             }
             pa(stack_b, stack_a, &ps);
+                
         }
     }
     print(stack_a, stack_b, ps.size);

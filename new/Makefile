@@ -2,7 +2,7 @@ CC	= gcc
 FLAGS = -Wall -Wextra -Werror
 RM	= rm -f
 
-NAME	= push
+NAME	= push_swap
 HEADER = push.h
 
 SRCS = push.c utils.c functions.c organize.c
