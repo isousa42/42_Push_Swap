@@ -8,12 +8,13 @@ void    init(t_ps *ps, int *stack_a, int *stack_b, char **argv)
     ps->bottom_a = ps->size - 1;
     ps->top_b = ps->size;
 	ps->pos = 0;
+	ps->chunks = 0;
 
-    if (check_dup(argv) == -1)
-    {
-        printf("ERROR");
-        exit(0);
-    }
+    // if (check_dup(argv) == -1)
+    // {
+    //     printf("ERROR");
+    //     exit(0);
+    // }
 
     while (j < ps->size)
 	{

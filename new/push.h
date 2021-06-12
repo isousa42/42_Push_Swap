@@ -8,6 +8,7 @@ typedef struct s_ps
     int bottom_a;
     int size;
     int pos;
+    int chunks;
 
 }		t_ps;
 

@@ -5,6 +5,38 @@
 // bottom_a = size - 1 (CHANGABLE) = Pos of the last element in stack A
 // top_b = size (CHANGABLE) = Pos top of Stack B. Starts at size because it is empty
 
+int    bubble_sort_chunk(int *stack, t_ps *ps)
+{
+    int middle;
+    int mid_pos;
+    int array[ps->size];
+    int temp;
+    int i;
+    int j;
+
+    i = 0;
+    while (i < ps->size)
+    {
+        array[i] = stack[i];
+        i++;
+    }
+    i = 0;
+    while(i < ps->size)
+    {
+        if (array[i] > array[i + 1])
+        {
+            temp = array[i];
+            array[i] = array[i + 1];
+            array[i + 1] = temp;
+            i = -1;
+        }
+        i++;
+    }
+    ps->chunks = ps->chunks + (ps->size / 10);
+    middle = array[ps->chunks];
+    return (middle);
+}
+
 int    bubble_sort(int *stack, t_ps *ps)
 {
     int middle;
@@ -15,24 +47,20 @@ int    bubble_sort(int *stack, t_ps *ps)
     int j;
 
     i = 0;
-    while (i < ps->bottom_a)
+    while (i <= ps->bottom_a)
     {
         array[i] = stack[i];
         i++;
     }
     i = 0;
-    while(i < ps->bottom_a - 1)
+    while(i < ps->bottom_a + 1)
     {
-        j = 0;
-        while (j < ps->bottom_a - i - 1)
+        if (array[i] > array[i + 1])
         {
-            if (array[j] > array[j + 1])
-            {
-                temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
-            }
-            j++;
+            temp = array[i];
+            array[i] = array[i + 1];
+            array[i + 1] = temp;
+            i = -1;
         }
         i++;
     }
@@ -60,7 +88,7 @@ int     check_res(int *stack_a, t_ps *ps, int middle)
 
 int     check_bigger(int *stack, t_ps *ps)
 {
-    int i = 0;
+    int i = ps->top_b;
     int big = -2147483647;
     while (i < ps->size)
     {
@@ -68,7 +96,7 @@ int     check_bigger(int *stack, t_ps *ps)
             big = stack[i];
         i++;
     }
-    i = 0;
+    i = ps->top_b;
     while (i < ps->size)
     {
         if (big == stack[i])
@@ -86,17 +114,19 @@ int main(int argc, char **argv)
     int stack_b[ps.size];
 
     int middle;
-
     init(&ps, stack_a, stack_b, argv);
-    print(stack_a, stack_b, ps.size);
+    //print(stack_a, stack_b, ps.size);
 
     if (argc == 4)
         org_3dig(stack_a, &ps);
-    if (argc > 5)
+    if (argc >= 5)
     {
         while (ps.bottom_a > 2)
         {
-            middle = bubble_sort(stack_a, &ps);
+            if (argc <= 102)
+                middle = bubble_sort(stack_a, &ps);
+            else
+                middle = bubble_sort_chunk(stack_a, &ps);
             while (stack_a[0] < middle)
 		        pb(stack_a, stack_b, &ps);
             while (check_res(stack_a, &ps, middle))
@@ -112,7 +142,7 @@ int main(int argc, char **argv)
             }
         }
         org_3dig(stack_a, &ps);
-        while (ps.top_b < ps.size - 1)
+        while (ps.top_b < ps.size)
         {
             if (stack_b[ps.top_b + 1] == stack_b[check_bigger(stack_b, &ps)] && (ps.size - ps.top_b) > 3)
                 sb(stack_b, &ps, 1);
@@ -127,10 +157,9 @@ int main(int argc, char **argv)
                     rb(stack_b, &ps, 1);
             }
             pa(stack_b, stack_a, &ps);
-                
         }
     }
-    print(stack_a, stack_b, ps.size);
+   //print(stack_a, stack_b, ps.size);
 
 
     
