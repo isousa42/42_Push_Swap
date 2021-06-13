@@ -1,5 +1,12 @@
-#include "push.h"
+#include "push_swap.h"
 
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -18,48 +25,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
 }
 
-void    init(t_ps *ps, int *stack_a, int *stack_b, char **argv)
-{
-    int j = 0;
-    int i;
-    int sort[ps->size];
-    ps->bottom_a = ps->size - 1;
-    ps->top_b = ps->size;
-	ps->pos = 0;
-	ps->chunks = 0;
-
-    // if (check_dup(argv) == -1)
-    // {
-    //     printf("ERROR");
-    //     exit(0);
-    // }
-
-    while (j < ps->size)
-	{
-		stack_a[j] = 0;
-		stack_b[j] = 0;
-		j++;
-	}
-    j = 0;
-    i = 1;
-	while (i < ps->size + 1)
-	{
-		stack_a[j] = ft_atoi(argv[i]);
-		sort[j] = ft_atoi(argv[i]);
-		i++;
-		j++;
-	}
-    j = 0;
-	while (j < ps->size + 1)
-	{
-		if (stack_a[j] == 0)
-		{
-			stack_a[j] = 1;
-		}
-		j++;
-	}
-
-}
 
 int	ft_atoi(const char *str)
 {
@@ -103,8 +68,6 @@ int     check_dup(char **argv)
 {
     int i = 1;
     int j;
-    int x;
-    int y;
     int check = 0;
 
     while (argv[i])

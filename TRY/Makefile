@@ -3,9 +3,9 @@ FLAGS = -Wall -Wextra -Werror
 RM	= rm -f
 
 NAME	= push_swap
-HEADER = push.h
+HEADER = push_swap.h
 
-SRCS = push.c utils.c functions.c organize.c
+SRCS = push_swap.c utils.c functions.c organize.c checkers.c sort_alg.c more_functions.c
 
 OBJS = $(SRCS:.c=.o)
 
