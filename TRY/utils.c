@@ -1,5 +1,23 @@
 #include "push.h"
 
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t i;
+
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0')
+	{
+		if (i < (n - 1))
+			i++;
+		else
+			return (0);
+	}
+	return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
+}
+
 void    init(t_ps *ps, int *stack_a, int *stack_b, char **argv)
 {
     int j = 0;
@@ -10,7 +28,11 @@ void    init(t_ps *ps, int *stack_a, int *stack_b, char **argv)
 	ps->pos = 0;
 	ps->chunks = 0;
 
-	check_dup(argv);
+    // if (check_dup(argv) == -1)
+    // {
+    //     printf("ERROR");
+    //     exit(0);
+    // }
 
     while (j < ps->size)
 	{
@@ -77,10 +99,13 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void     check_dup(char **argv)
+int     check_dup(char **argv)
 {
     int i = 1;
     int j;
+    int x;
+    int y;
+    int check = 0;
 
     while (argv[i])
     {
@@ -99,5 +124,5 @@ void     check_dup(char **argv)
         }
         i++;
     }
-
+    return (0);
 }

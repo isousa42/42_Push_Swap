@@ -9,8 +9,7 @@ void    sa(int *stack_a, t_ps *ps, int control)
     stack_a[0] = stack_a[1];
     stack_a[1] = temp;
     if (control == 1)
-        printf("sa\n");
-
+        write(1, "sa\n", 4);
 }
 
 void    ra(int *stack_a, t_ps *ps, int control)
@@ -27,7 +26,7 @@ void    ra(int *stack_a, t_ps *ps, int control)
     }
     stack_a[i] = temp;
     if (control == 1)
-        printf("ra\n");
+        write(1, "ra\n", 4);
 
 }
 
@@ -45,12 +44,12 @@ void    rra(int *stack_a, t_ps *ps, int control)
     }
     stack_a[i] = temp;
     if (control == 1)
-        printf("rra\n");
+        write(1, "rra\n", 5);
+
 }
 
 void    pb(int *stack_a, int *stack_b, t_ps *ps)
 {
-
     if (ps->bottom_a < 0)
         return ;
     ps->top_b--;
@@ -59,7 +58,7 @@ void    pb(int *stack_a, int *stack_b, t_ps *ps)
     stack_a[0] = 0;
     ra(stack_a, ps, 0);
     ps->bottom_a--;
-    printf("pb\n");
+    write(1, "pb\n", 4);
 
 }
 
@@ -73,8 +72,7 @@ void    sb(int *stack_b, t_ps *ps, int control)
     stack_b[ps->top_b] = stack_b[ps->top_b + 1];
     stack_b[ps->top_b + 1] = temp;
     if (control == 1)
-        printf("sb\n");
-
+        write(1, "sb\n", 4);
 
 }
 
@@ -95,7 +93,7 @@ void    rb(int *stack_b, t_ps *ps, int control)
     }
     stack_b[i] = temp;
     if (control == 1)
-        printf("rb\n");
+        write(1, "rb\n", 4);
 
 }
 
@@ -113,7 +111,7 @@ void    rrb(int *stack_b, t_ps *ps, int control)
     }
     stack_b[i] = temp;
     if (control == 1)
-        printf("rrb\n");
+        write(1, "rrb\n", 5);
 
 }
 
@@ -124,6 +122,6 @@ void    pa(int *stack_b, int *stack_a, t_ps *ps)
     stack_a[0] = stack_b[ps->top_b];
     stack_b[ps->top_b] = 0;
     ps->top_b++;
-    printf("pa\n");
+    write(1, "pa\n", 4);
 
 }
