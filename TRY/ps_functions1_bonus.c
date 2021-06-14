@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "checker.h"
 
-void	sa(int *stack_a, t_ps *ps, int control)
+void	sa(int *stack_a, t_ps *ps)
 {
 	int	temp;
 
@@ -9,11 +9,9 @@ void	sa(int *stack_a, t_ps *ps, int control)
 	temp = stack_a[0];
 	stack_a[0] = stack_a[1];
 	stack_a[1] = temp;
-	if (control == 1)
-		write(1, "sa\n", 3);
 }
 
-void	ra(int *stack_a, t_ps *ps, int control)
+void	ra(int *stack_a, t_ps *ps)
 {
 	int	temp;
 	int	i;
@@ -26,11 +24,9 @@ void	ra(int *stack_a, t_ps *ps, int control)
 		i++;
 	}
 	stack_a[i] = temp;
-	if (control == 1)
-		write(1, "ra\n", 3);
 }
 
-void	rra(int *stack_a, t_ps *ps, int control)
+void	rra(int *stack_a, t_ps *ps)
 {
 	int	temp;
 	int	i;
@@ -43,8 +39,6 @@ void	rra(int *stack_a, t_ps *ps, int control)
 		i--;
 	}
 	stack_a[i] = temp;
-	if (control == 1)
-		write(1, "rra\n", 4);
 }
 
 void	pb(int *stack_a, int *stack_b, t_ps *ps)
@@ -54,7 +48,6 @@ void	pb(int *stack_a, int *stack_b, t_ps *ps)
 	ps->top_b--;
 	stack_b[ps->top_b] = stack_a[0];
 	stack_a[0] = 0;
-	ra(stack_a, ps, 0);
+	ra(stack_a, ps);
 	ps->bottom_a--;
-	write(1, "pb\n", 3);
 }
