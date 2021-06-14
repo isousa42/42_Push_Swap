@@ -5,14 +5,14 @@ RM	= rm -f
 NAME	= push_swap
 HEADER = push_swap.h
 
-SRCS = push_swap.c utils.c functions.c organize.c checkers.c sort_alg.c more_functions.c
+SRCS = push_swap.c utils.c ps_functions1.c organize.c checkers.c sort_functions.c ps_functions2.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME) : 
-	gcc $(SRCS) -o $(NAME)
+	gcc $(SRCS) $(FLAGS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

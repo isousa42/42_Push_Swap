@@ -23,14 +23,11 @@ void	org_3dig(int *stack_a, t_ps *ps)
 		rra(stack_a, ps, 1);
 }
 
-void	org_stack_a(int *stack_a, int *stack_b, t_ps *ps, int argc)
+void	org_stack_a(int *stack_a, int *stack_b, t_ps *ps)
 {
 	int	middle;
 
-	if (argc <= 102)
-		middle = bubble_sort(stack_a, ps);
-	else
-		middle = bubble_sort_chunk(stack_a, ps);
+	middle = bubble_sort(stack_a, ps);
 	while (stack_a[0] < middle)
 		pb(stack_a, stack_b, ps);
 	while (check_res(stack_a, ps, middle))
