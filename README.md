@@ -10,5 +10,5 @@
 <p> To sort it, the student may only use an auxiliary stack and some of given functions that will make a determinated movement. </br></p>
 <p> Using this movements, the program as to sort the stack in the minimum number of movements possible.</br></p>
 </br>
-<p> PUSH_SWAP (MANDATORY) OK (3/4) ✔️ PUSH_SWAP (BONSU) OK ✔️</p>
+<p> PUSH_SWAP (MANDATORY) OK (3/4) ✔️ PUSH_SWAP (BONUS) OK ✔️</p>
 <p> Moulinette Grade: 110% </p>
